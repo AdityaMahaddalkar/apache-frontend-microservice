@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-frontend
+  labels:
+    app: web
+    function: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web-ui
+      function: frontend
+  template:
+    metadata:
+      labels:
+        app: web-ui
+        function: frontend
+    spec:
+      containers:
+        - name: web-frontend
+          image: adityam1311/apache-frontend-microservice:1.0.0
+          ports:
+            - containerPort: 80
